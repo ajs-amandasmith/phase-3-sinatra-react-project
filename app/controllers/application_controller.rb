@@ -35,7 +35,8 @@ class ApplicationController < Sinatra::Base
       title: params[:title],
       publisher: params[:publisher],
       genre: params[:genre],
-      author_id: params[:author_id]
+      author_id: params[:author_id],
+      review: params[:review]
     )
     book.to_json
   end
@@ -43,10 +44,7 @@ class ApplicationController < Sinatra::Base
   patch "/books/:id" do
     book = Book.find(params[:id])
     book.update(
-      title: params[:title],
-      publisher: params[:publisher],
-      genre: params[:genre],
-      author_id: params[:author_id]
+      review: params[:review]
     )
     book.to_json
   end
