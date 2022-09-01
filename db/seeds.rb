@@ -15,7 +15,8 @@ puts "🌱 Seeding books..."
       title: Faker::Book.unique.title,
       genre: Faker::Book.genre,
       publisher: Faker::Book.publisher,
-      author_id: author.id
+      author_id: author.id,
+      review: Faker::Lorem.paragraph
     )
   end
 
