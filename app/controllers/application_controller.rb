@@ -31,14 +31,15 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/books" do
+    author = Author.find_or_create_by(name: params[:name])
     book = Book.create(
       title: params[:title],
       publisher: params[:publisher],
       genre: params[:genre],
-      author_id: params[:author_id],
+      author_id: author.id,
       review: params[:review]
     )
-    book.to_json
+    book.to_json(include: :author)
   end
 
   patch "/books/:id" do
