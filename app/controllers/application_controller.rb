@@ -47,7 +47,7 @@ class ApplicationController < Sinatra::Base
     book.update(
       review: params[:review]
     )
-    book.to_json
+    book.to_json(include: :author)
   end
 
   delete "/books/:id" do
