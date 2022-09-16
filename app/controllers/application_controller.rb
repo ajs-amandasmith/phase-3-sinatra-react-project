@@ -39,7 +39,7 @@ class ApplicationController < Sinatra::Base
       author_id: author.id,
       review: params[:review]
     )
-    book.to_json(include: { author: { include: :books } })
+    book.to_json(include: :author)
   end
 
   patch "/books/:id" do
