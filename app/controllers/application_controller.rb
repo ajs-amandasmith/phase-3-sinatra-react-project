@@ -32,15 +32,16 @@ class ApplicationController < Sinatra::Base
 
   post "/books" do
     author = Author.find_or_create_by(name: params[:name])
-    book = Book.create(
+    book = author.books.create(
       title: params[:title],
       publisher: params[:publisher],
       genre: params[:genre],
-      author_id: author.id,
+      # author_id: author.id,
       review: params[:review]
     )
     book.to_json(include: :author)
   end
+
 
   patch "/books/:id" do
     book = Book.find(params[:id])
@@ -49,6 +50,7 @@ class ApplicationController < Sinatra::Base
     )
     book.to_json(include: :author)
   end
+
 
   delete "/books/:id" do
     book = Book.find(params[:id])
